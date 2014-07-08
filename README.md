@@ -26,7 +26,7 @@ build which can be achieved by the following command sequence:
   - mkdir build
   - cd build
   - cmake ..
-  - make -j<number-of-cores+1>
+  - make -j\<number-of-cores+1\>
 
 # Installation
 
