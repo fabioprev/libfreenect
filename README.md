@@ -10,13 +10,13 @@ libfreenect requires the following packages to build:
   * cmake
   * libusb
 
-On Xubuntu (Ubuntu) 13.04 these dependencies are resolved by installing the
+On Xubuntu (Ubuntu) 12.04.4 LTS (Kernel 3.2.0-68) these dependencies are resolved by installing the
 following packages:
 
   - build-essential
   - cmake
   - libusb-dev
-  - libusb-1.0.0-dev
+  - libusb-1.0-0-dev
 
 # Compilation
 
