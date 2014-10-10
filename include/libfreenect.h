@@ -615,6 +615,14 @@ FREENECTAPI freenect_frame_mode freenect_find_depth_mode(freenect_resolution res
  */
 FREENECTAPI int freenect_set_depth_mode(freenect_device* dev, const freenect_frame_mode mode);
 
+FREENECTAPI int freenect_set_auto_exposure (freenect_device * dev, int enabled);
+FREENECTAPI int freenect_set_color_correction (freenect_device * dev, int enabled);
+FREENECTAPI int freenect_set_auto_white_balance (freenect_device * dev, int enabled);
+
+FREENECTAPI int freenect_get_auto_exposure (freenect_device * dev);
+FREENECTAPI int freenect_get_color_correction (freenect_device * dev);
+FREENECTAPI int freenect_get_auto_white_balance (freenect_device * dev);
+
 #ifdef __cplusplus
 }
 #endif

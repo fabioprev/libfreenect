@@ -155,7 +155,7 @@ namespace Freenect {
 		int getDepthBufferSize(){
 			return freenect_get_current_depth_mode(m_dev).bytes;
 		}
-	  private:
+	  public:
 		freenect_device *m_dev;
 		freenect_video_format m_video_format;
 		freenect_depth_format m_depth_format;
