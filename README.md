@@ -10,8 +10,8 @@ libfreenect requires the following packages to build:
   * cmake
   * libusb
 
-On Xubuntu (Ubuntu) 12.04.4 LTS (Kernel 3.2.0-68) these dependencies are resolved by installing the
-following packages:
+On Xubuntu (Ubuntu) 14.04 LTS (kernel 3.13.0-37) and later versions, these dependencies are
+resolved by installing the following packages:
 
   - build-essential
   - cmake
