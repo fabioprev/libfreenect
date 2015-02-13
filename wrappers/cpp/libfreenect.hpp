@@ -137,7 +137,7 @@ namespace Freenect {
 		virtual void VideoCallback(void *video, uint32_t timestamp) = 0;
 		// Do not call directly even in child
 		virtual void DepthCallback(void *depth, uint32_t timestamp) = 0;
-	  protected:
+	  public:
 		int getVideoBufferSize(){
 			switch(m_video_format) {
 				case FREENECT_VIDEO_RGB:

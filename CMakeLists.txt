@@ -154,10 +154,6 @@ IF(BUILD_PYTHON)
   add_subdirectory (wrappers/python)
 ENDIF()
 
-#IF(BUILD_KINECTACQUISITION)
-#  add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/../KinectAcquisition ../)
-#ENDIF()
-
 ######################################################################################
 # Extras
 ######################################################################################
