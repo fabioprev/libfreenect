@@ -40,6 +40,8 @@ cmake_minimum_required(VERSION 2.6)
 
 PROJECT(libfreenect)
 
+get_filename_component(PROJECT_ROOT "${PROJECT_SOURCE_DIR}" ABSOLUTE)
+
 set (PROJECT_VER_MAJOR 0)
 set (PROJECT_VER_MINOR 1)
 set (PROJECT_VER_PATCH 2)
@@ -170,6 +172,31 @@ add_custom_target(uninstall
 # Create Debian/RPM Packages
 # after make, use "fakeroot cpack" in the build Dir to complete
 
+file(READ "$ENV{HOME}/.profile" contents)
+
+# Convert file contents into a CMake list (where each element in the list is one line of the file)
+string(REGEX REPLACE ";" "\\\\;" contents "${contents}")
+string(REGEX REPLACE "\n" ";" contents "${contents}")
+
+set(found false)
+
+# Checking whether the environment variable has already been set.
+foreach (line ${contents})
+  string(REGEX MATCH "export Freenect_ROOT=${PROJECT_ROOT}" result "${line}")
+
+  if ("${result}" STREQUAL "export Freenect_ROOT=${PROJECT_ROOT}")
+    set(found true)
+  endif ("${result}" STREQUAL "export Freenect_ROOT=${PROJECT_ROOT}")
+endforeach(line)
+
+if (NOT found)
+  # Setting the environment variable.
+  file(APPEND $ENV{HOME}/.profile "\nexport Freenect_ROOT=${PROJECT_ROOT}")
+
+  # Adding the path of the Freenect library
+  file(APPEND $ENV{HOME}/.bashrc "\nexport LD_LIBRARY_PATH=/usr/local/lib64:\${LD_LIBRARY_PATH}")
+endif (NOT found)
+
 IF ( BUILD_CPACK )
   set(CPACK_PACKAGE_DESCRIPTION "libfreenect for kinect")
   set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "libfreenect library for using kinect")
@@ -187,7 +214,7 @@ IF ( BUILD_CPACK )
   set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}-${CMAKE_SYSTEM_PROCESSOR}")
 
   include(CPack)
-
+  
   INSTALL(FILES "${CMAKE_BINARY_DIR}/lib/libfreenect.a" DESTINATION ${PROJECT_LIBRARY_INSTALL_DIR})
   if (BUILD_AUDIO)
     INSTALL(FILES "include/libfreenect-audio.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
@@ -199,4 +226,6 @@ IF ( BUILD_CPACK )
   INSTALL(FILES "README.asciidoc" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
 
 ENDIF ( BUILD_CPACK )
+
+
 
