@@ -195,8 +195,8 @@ namespace Freenect {
             ConcreteDevice& createDevice(char *_serial){
             DeviceMap::iterator it = m_devices.find(_serial);
 			if (it != m_devices.end()) delete it->second;
-            ConcreteDevice * device = new ConcreteDevice(m_ctx, _serial);
-            m_devices.insert(std::make_pair<char*, FreenectDevice*>(_serial, device));
+            ConcreteDevice * device = new ConcreteDevice(m_ctx, (char*) _serial);
+            m_devices.insert(std::make_pair<char*, FreenectDevice*>((char*)_serial, device));
 			return *device;
 		}
         void deleteDevice(char *_serial) {
